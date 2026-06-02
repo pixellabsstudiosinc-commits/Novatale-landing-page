@@ -395,7 +395,7 @@
 
       <h3>What you can build</h3>
       <ul>
-        <li><strong>Image, video, and no-media scenes</strong> with dialogue boxes and named speakers</li>
+        <li><strong>Pre-rendered scenes</strong> — image, video, or no-media scenes with dialogue boxes and named speakers (see callout below)</li>
         <li><strong>Branching narratives</strong> driven by conditional logic over variables and character metadata</li>
         <li><strong>Character profiles</strong> with portraits, relationships, metadata, and runtime-renameable names</li>
         <li><strong>Custom button styles</strong> reused across scenes and the main menu</li>
@@ -403,6 +403,11 @@
         <li><strong>Save / load system</strong> with 10 manual slots, a quick-save slot, and an auto-save slot</li>
         <li><strong>One-click export</strong> to Windows <code>.exe</code>, macOS <code>.dmg</code>, and Linux <code>.AppImage</code></li>
       </ul>
+
+      <div class="callout note">
+        <span class="tag">Important — pre-rendered scenes</span>
+        NovaTale does <strong>not</strong> use a character sprite system. There is no concept of layering a character image on top of a background at runtime. Each scene is a single pre-rendered image — if a character is present in the scene, they are painted into that image alongside the background. Only the dialogue box overlays the image. This means you author your art outside NovaTale (or with AI) as <em>complete scenes</em>, then import each one as the media file for its scene.
+      </div>
 
       <h3>Who this guide is for</h3>
       <p>This guide assumes <em>no programming background</em>. Wherever NovaTale lets you write a small expression (for example, a branch condition), the expression syntax is explained with worked examples. Everything else is just filling in forms, clicking buttons, and connecting nodes on a graph.</p>
@@ -847,10 +852,15 @@
 
       <h3>Media Type behaviour</h3>
       <ul>
-        <li><strong>Image</strong> — show a background image. Dialogue, voice, and BGM are all available. Supported file types: <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.webp</code>.</li>
+        <li><strong>Image</strong> — show a pre-rendered scene image. Dialogue, voice, and BGM are all available. Supported file types: <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.webp</code>.</li>
         <li><strong>Video (MP4)</strong> — play a cinematic clip. Dialogue and speaker fields are <em>disabled and hidden</em>; you cannot show dialogue on a video scene. Supported: <code>.mp4</code>, <code>.webm</code>, <code>.mov</code>.</li>
         <li><strong>None</strong> — pure dialogue/logic with no background media. Dialogue, voice, and BGM still available.</li>
       </ul>
+
+      <div class="callout warn">
+        <span class="tag">Reminder</span>
+        The scene image you import is the <strong>entire frame</strong> — including any character who is speaking. NovaTale does not overlay character sprites on a background. If Mira is the speaker in a library scene, your image file must already show Mira in the library. The dialogue box and choice buttons are the only things NovaTale draws on top.
+      </div>
 
       <div class="placeholder">
         <div class="icon">🖼️</div>
@@ -891,7 +901,7 @@
       <h3>Moonlit Signals — build the “Library Signal” scene</h3>
       <div class="example">
         <div class="title">Library Signal</div>
-        Media Type: <strong>Image</strong> · Media File: <em>library-rain.png</em> · Show Dialogue: ✔ · Speaker: <strong>Mira</strong> · Dialogue: “The signal changed when you chose to trust me, <code>{Player.name}</code>.” · Voice Audio: <em>mira-line-01.mp3</em> · Voice Volume: 100 · BGM: <em>ambient-night.mp3</em> · BGM Volume: 70 · Loop BGM: ✔
+        Media Type: <strong>Image</strong> · Media File: <em>scene-library-signal.png</em> (a pre-rendered image showing Mira in the rainy library) · Show Dialogue: ✔ · Speaker: <strong>Mira</strong> · Dialogue: “The signal changed when you chose to trust me, <code>{Player.name}</code>.” · Voice Audio: <em>mira-line-01.mp3</em> · Voice Volume: 100 · BGM: <em>ambient-night.mp3</em> · BGM Volume: 70 · Loop BGM: ✔
       </div>
 
       <div class="callout warn">
@@ -1216,7 +1226,7 @@ route = "rooftop";</code></pre>
       <h3>Moonlit Signals — menu</h3>
       <div class="example">
         <div class="title">Layout</div>
-        Background image: <em>rooftop-observatory.png</em> · Menu BGM: <em>menu-theme.mp3</em> @ 70% · Buttons (top-down, centred horizontally): <strong>New Game</strong> · <strong>Continue</strong> · <strong>Load Game</strong> · <strong>Preferences</strong> · <strong>Quit</strong>, all using the <em>Primary</em> button style.
+        Background image: <em>scene-main-menu.png</em> (pre-rendered rooftop observatory, no characters) · Menu BGM: <em>menu-theme.mp3</em> @ 70% · Buttons (top-down, centred horizontally): <strong>New Game</strong> · <strong>Continue</strong> · <strong>Load Game</strong> · <strong>Preferences</strong> · <strong>Quit</strong>, all using the <em>Primary</em> button style.
       </div>
     </section>
 
@@ -1634,9 +1644,14 @@ route = "rooftop";</code></pre>
 
       <h3>6. Scenes &amp; branches</h3>
 
+      <div class="callout note">
+        <span class="tag">Remember</span>
+        Each scene image below is a single pre-rendered illustration that already contains the speaking character. Mira is painted into every library / rooftop image; Ren is painted into the corridor image. NovaTale will not composite characters for you.
+      </div>
+
       <div class="example">
         <div class="title">Scene A — Library Signal (starting scene)</div>
-        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal changed when you chose to trust me, {Player.name}.”</em> · Voice: <em>mira-line-01.mp3</em> · BGM: <em>ambient-night.mp3</em><br>
+        Image scene · Media File: <em>scene-library-signal.png</em> (Mira in the rainy library) · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal changed when you chose to trust me, {Player.name}.”</em> · Voice: <em>mira-line-01.mp3</em> · BGM: <em>ambient-night.mp3</em><br>
         <strong>Branches out</strong>:
         <ul style="margin-top:6px;">
           <li>→ <strong>Library Investigation</strong> · Button: “Stay in the library” · Action: <code>trust += 5; Mira.trust += 10; route = "library";</code></li>
@@ -1648,31 +1663,31 @@ route = "rooftop";</code></pre>
 
       <div class="example">
         <div class="title">Scene B — Library Investigation</div>
-        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“We comb the shelves. {Mira.trust > 40 ? 'You feel her lean in close.' : 'She still seems wary.'}”</em><br>
+        Image scene · Media File: <em>scene-library-investigation.png</em> (Mira crouched searching a lower shelf) · Speaker: <strong>Mira</strong> · Dialogue: <em>“We comb the shelves. {Mira.trust > 40 ? 'You feel her lean in close.' : 'She still seems wary.'}”</em><br>
         Branches: → <strong>Signal Revelation</strong> · Condition: <code>signalStrength &gt;= 50</code> · Default → <strong>Library Signal</strong> (loop back)
       </div>
 
       <div class="example">
         <div class="title">Scene C — Rooftop Door</div>
-        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The receiver crackles. The signal strength reads {signalStrength}.”</em> · Transition in: Dissolve 600ms<br>
+        Image scene · Media File: <em>scene-rooftop-door.png</em> (Mira at the rooftop receiver) · Speaker: <strong>Mira</strong> · Dialogue: <em>“The receiver crackles. The signal strength reads {signalStrength}.”</em> · Transition in: Dissolve 600ms<br>
         Branches: → <strong>Signal Revelation</strong> · Condition: <code>signalStrength &gt;= 50</code> · Default → <strong>Library Signal</strong>
       </div>
 
       <div class="example">
         <div class="title">Scene D — Ask Ren for help</div>
-        Image scene · Speaker: <strong>Ren</strong> · Dialogue: <em>“Astronomy club nonsense, {Player.name}. {Ren.trust &gt; 20 ? 'But I'll bite — what do you need?' : 'No way.'}”</em><br>
+        Image scene · Media File: <em>scene-ask-ren.png</em> (Ren leaning against corridor lockers) · Speaker: <strong>Ren</strong> · Dialogue: <em>“Astronomy club nonsense, {Player.name}. {Ren.trust &gt; 20 ? 'But I'll bite — what do you need?' : 'No way.'}”</em><br>
         Branches: → <strong>Library Investigation</strong> · Action: <code>hasKeycard = true; trust += 3;</code> · Button: “Convince him”
       </div>
 
       <div class="example">
         <div class="title">Scene E — Signal Revelation (ending)</div>
-        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal resolves. {signalStrength &gt;= 60 ? 'It's the rooftop coordinates.' : 'It fades before we can decode it.'} Thank you for trusting me, {Player.name}.”</em><br>
+        Image scene · Media File: <em>scene-signal-revelation.png</em> (Mira at the active glowing receiver, clouds parting) · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal resolves. {signalStrength &gt;= 60 ? 'It's the rooftop coordinates.' : 'It fades before we can decode it.'} Thank you for trusting me, {Player.name}.”</em><br>
         No outgoing branches — terminal scene.
       </div>
 
       <h3>7. Main Menu</h3>
       <ul>
-        <li>Background image: <em>rooftop-observatory.png</em></li>
+        <li>Background image: <em>scene-main-menu.png</em> (rooftop observatory, empty — no characters)</li>
         <li>Menu BGM: <em>menu-theme.mp3</em> @ 70%</li>
         <li>Buttons: New Game · Continue · Load Game · Preferences · Quit — all Primary style</li>
       </ul>
