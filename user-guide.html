@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaTale — Complete User Guide</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f7f8fb;
+    --bg-code: #1e1e2e;
+    --text: #1a1a2e;
+    --text-soft: #555;
+    --text-muted: #888;
+    --accent: #6366f1;
+    --accent-soft: #eef0ff;
+    --accent-dark: #4f46e5;
+    --border: #e3e5ee;
+    --border-strong: #c8ccda;
+    --tip-bg: #e8f7ee;
+    --tip-border: #4caf50;
+    --warn-bg: #fff4e5;
+    --warn-border: #f59e0b;
+    --note-bg: #eef4ff;
+    --note-border: #3b82f6;
+    --code-text: #f1f5f9;
+    --code-key: #c084fc;
+    --code-str: #fbbf24;
+    --code-com: #94a3b8;
+    --gold: #f59e0b;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-soft);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+  }
+  /* ---------- Sidebar ---------- */
+  aside.toc {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    height: 100vh;
+    overflow-y: auto;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 24px 18px 32px;
+    border-right: 1px solid #1e293b;
+  }
+  aside.toc .brand {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #818cf8, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  aside.toc .tagline {
+    font-size: 12px;
+    color: #94a3b8;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  aside.toc nav { font-size: 13.5px; }
+  aside.toc nav a {
+    display: block;
+    color: #cbd5e1;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-bottom: 2px;
+    line-height: 1.45;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  aside.toc nav a:hover {
+    background: #1e293b;
+    color: #fff;
+  }
+  aside.toc nav a .num {
+    display: inline-block;
+    width: 26px;
+    color: #818cf8;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  aside.toc .foot {
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid #1e293b;
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  /* ---------- Main ---------- */
+  main {
+    background: var(--bg);
+    padding: 56px 64px 80px;
+    max-width: 920px;
+    width: 100%;
+  }
+  main h1 {
+    font-size: 40px;
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -0.5px;
+  }
+  main h1 .sub {
+    display: block;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-soft);
+    margin-top: 8px;
+    letter-spacing: 0;
+  }
+  main h2 {
+    font-size: 28px;
+    margin: 56px 0 12px;
+    letter-spacing: -0.3px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  main h2 .sec-num {
+    color: var(--accent);
+    font-weight: 700;
+    margin-right: 10px;
+  }
+  main h3 {
+    font-size: 20px;
+    margin: 36px 0 8px;
+    color: #1e293b;
+  }
+  main h4 {
+    font-size: 16px;
+    margin: 24px 0 6px;
+    color: var(--text-soft);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  main p { margin: 10px 0; }
+  main ul, main ol { margin: 10px 0 14px; padding-left: 26px; }
+  main li { margin: 5px 0; }
+  main strong { color: #0f172a; }
+  main code {
+    background: #f0f2f9;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    color: #6d28d9;
+  }
+  main pre {
+    background: var(--bg-code);
+    color: var(--code-text);
+    padding: 14px 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 14px 0;
+  }
+  main pre code { background: transparent; color: inherit; padding: 0; font-size: inherit; }
+
+  /* Tables */
+  table.fields {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  table.fields th, table.fields td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.fields th {
+    background: var(--bg-soft);
+    font-weight: 600;
+    color: #334155;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  table.fields tr:nth-child(even) td { background: #fafbfd; }
+
+  /* Placeholder image block */
+  .placeholder {
+    border: 2px dashed var(--border-strong);
+    background: linear-gradient(135deg, #fafbff 0%, #f0f2fb 100%);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin: 16px 0 18px;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .placeholder .icon {
+    font-size: 30px;
+    flex-shrink: 0;
+    opacity: 0.55;
+  }
+  .placeholder .meta { flex: 1; }
+  .placeholder .meta .label {
+    font-weight: 600;
+    color: #334155;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .placeholder .meta .path {
+    font-family: "SF Mono", Menlo, monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-left: 4px solid;
+    padding: 12px 16px;
+    margin: 14px 0;
+    border-radius: 6px;
+    font-size: 14.5px;
+  }
+  .callout.tip    { background: var(--tip-bg);  border-color: var(--tip-border); }
+  .callout.warn   { background: var(--warn-bg); border-color: var(--warn-border); }
+  .callout.note   { background: var(--note-bg); border-color: var(--note-border); }
+  .callout .tag {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+  .callout.tip .tag  { color: #1f7a3a; }
+  .callout.warn .tag { color: #b45309; }
+  .callout.note .tag { color: #1d4ed8; }
+
+  /* Inline step list */
+  ol.steps {
+    counter-reset: step;
+    list-style: none;
+    padding-left: 0;
+  }
+  ol.steps > li {
+    counter-increment: step;
+    padding: 8px 0 8px 44px;
+    position: relative;
+  }
+  ol.steps > li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 28px;
+    height: 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Tag pills */
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent-dark);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-right: 4px;
+  }
+  .pill.gold   { background: #fef3c7; color: #92400e; }
+  .pill.green  { background: #d1fae5; color: #065f46; }
+  .pill.red    { background: #fee2e2; color: #991b1b; }
+  .pill.gray   { background: #e2e8f0; color: #334155; }
+
+  /* Example block (Moonlit Signals worked-example boxes) */
+  .example {
+    background: #fff8ec;
+    border: 1px solid #f7d57a;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .example .title {
+    font-weight: 700;
+    color: #8a5a00;
+    margin-bottom: 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Anchor offset for sticky header (none, but small visual cue) */
+  section { scroll-margin-top: 16px; }
+
+  /* Print styles */
+  @media print {
+    aside.toc { display: none; }
+    .layout { grid-template-columns: 1fr; }
+    main { padding: 24px; max-width: 100%; }
+    .placeholder { page-break-inside: avoid; }
+    main h2 { page-break-after: avoid; }
+    pre { white-space: pre-wrap; word-break: break-word; }
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside.toc { position: relative; height: auto; max-height: 360px; }
+    main { padding: 32px 22px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <aside class="toc">
+    <div class="brand">NovaTale</div>
+    <div class="tagline">Complete User Guide</div>
+    <nav>
+      <a href="#sec-1"><span class="num">1.</span>Welcome to NovaTale</a>
+      <a href="#sec-2"><span class="num">2.</span>Before You Begin</a>
+      <a href="#sec-3"><span class="num">3.</span>Sample Story: Moonlit Signals</a>
+      <a href="#sec-4"><span class="num">4.</span>Activating NovaTale</a>
+      <a href="#sec-5"><span class="num">5.</span>Creating Your First Project</a>
+      <a href="#sec-6"><span class="num">6.</span>Tour of the Dashboard</a>
+      <a href="#sec-7"><span class="num">7.</span>Characters</a>
+      <a href="#sec-8"><span class="num">8.</span>Relationships</a>
+      <a href="#sec-9"><span class="num">9.</span>Variables</a>
+      <a href="#sec-10"><span class="num">10.</span>Scenes</a>
+      <a href="#sec-11"><span class="num">11.</span>Dialogue Expressions</a>
+      <a href="#sec-12"><span class="num">12.</span>The Scene Graph</a>
+      <a href="#sec-13"><span class="num">13.</span>Branches</a>
+      <a href="#sec-14"><span class="num">14.</span>Button Designer</a>
+      <a href="#sec-15"><span class="num">15.</span>Main Menu Designer</a>
+      <a href="#sec-16"><span class="num">16.</span>Preferences</a>
+      <a href="#sec-17"><span class="num">17.</span>Playing &amp; Previewing</a>
+      <a href="#sec-18"><span class="num">18.</span>Save &amp; Load</a>
+      <a href="#sec-19"><span class="num">19.</span>Exporting Your Game</a>
+      <a href="#sec-20"><span class="num">20.</span>License System</a>
+      <a href="#sec-21"><span class="num">21.</span>Known Limits</a>
+      <a href="#sec-22"><span class="num">22.</span>Best Practices</a>
+      <a href="#sec-23"><span class="num">23.</span>Quick Reference</a>
+      <a href="#sec-24"><span class="num">24.</span>Moonlit Signals Walkthrough</a>
+    </nav>
+    <div class="foot">
+      NovaTale by PixelLabs.<br>
+      This guide covers every screen, field, and feature of the application.<br>
+      Replace placeholder boxes with screenshots from <code>user-guide-assets/</code>.
+    </div>
+  </aside>
+
+  <main>
+
+    <h1>NovaTale — Complete User Guide
+      <span class="sub">Everything you need to build, preview, and ship a visual novel — using <em>Moonlit Signals</em> as the running example.</span>
+    </h1>
+
+    <!-- ============ 1 ============ -->
+    <section id="sec-1">
+      <h2><span class="sec-num">1.</span>Welcome to NovaTale</h2>
+      <p><strong>NovaTale</strong> is a desktop visual-novel creator by <strong>PixelLabs</strong>. It is designed for storytellers who want to build branching, media-rich visual novels with very little or no code. Instead of writing a script file first, you assemble your project visually: import artwork, write dialogue, connect scenes on a graph, and export the finished game as a standalone desktop application for Windows, macOS, and Linux.</p>
+
+      <div class="placeholder">
+        <div class="icon">🖼️</div>
+        <div class="meta">
+          <div class="label">Screenshot: NovaTale welcome screen with “Create New Project” and “Open Existing Project” buttons</div>
+          <div class="path">user-guide-assets/01-welcome-screen.png</div>
+        </div>
+      </div>
+
+      <h3>What you can build</h3>
+      <ul>
+        <li><strong>Image, video, and no-media scenes</strong> with dialogue boxes and named speakers</li>
+        <li><strong>Branching narratives</strong> driven by conditional logic over variables and character metadata</li>
+        <li><strong>Character profiles</strong> with portraits, relationships, metadata, and runtime-renameable names</li>
+        <li><strong>Custom button styles</strong> reused across scenes and the main menu</li>
+        <li><strong>A custom main menu</strong> on a 1920×1080 design canvas</li>
+        <li><strong>Save / load system</strong> with 10 manual slots, a quick-save slot, and an auto-save slot</li>
+        <li><strong>One-click export</strong> to Windows <code>.exe</code>, macOS <code>.dmg</code>, and Linux <code>.AppImage</code></li>
+      </ul>
+
+      <h3>Who this guide is for</h3>
+      <p>This guide assumes <em>no programming background</em>. Wherever NovaTale lets you write a small expression (for example, a branch condition), the expression syntax is explained with worked examples. Everything else is just filling in forms, clicking buttons, and connecting nodes on a graph.</p>
+    </section>
+
+    <!-- ============ 2 ============ -->
+    <section id="sec-2">
+      <h2><span class="sec-num">2.</span>Before You Begin</h2>
+
+      <h3>System requirements</h3>
+      <table class="fields">
+        <tr><th>Platform</th><th>Requirement</th></tr>
+        <tr><td>Windows</td><td>Windows 10 or later, 64-bit</td></tr>
+        <tr><td>macOS</td><td>macOS 11 (Big Sur) or later, Intel or Apple Silicon</td></tr>
+        <tr><td>Linux</td><td>Ubuntu 20.04+ or equivalent, 64-bit</td></tr>
+        <tr><td>Disk</td><td>~500 MB for the editor; more depending on your project assets</td></tr>
+        <tr><td>RAM</td><td>4 GB minimum, 8 GB recommended</td></tr>
+      </table>
+
+      <h3>First launch</h3>
+      <ol class="steps">
+        <li>Install NovaTale using the installer you received (DMG on macOS, EXE on Windows, AppImage on Linux).</li>
+        <li>Launch the application. On the very first launch you will see the activation screen (covered in <a href="#sec-4">Section 4</a>).</li>
+        <li>Choose <strong>Try Demo Mode</strong> to explore with limits, or enter a license key to unlock everything.</li>
+        <li>After activation you are taken to the <strong>Welcome screen</strong>, where you can create or open a project.</li>
+      </ol>
+
+      <div class="callout note">
+        <span class="tag">Note</span>
+        NovaTale stores your projects in a local SQLite database managed by the application. You do not edit project files directly — everything is done through the editor screens.
+      </div>
+    </section>
+
+    <!-- ============ 3 ============ -->
+    <section id="sec-3">
+      <h2><span class="sec-num">3.</span>The Sample Story — Moonlit Signals</h2>
+      <p>Throughout this guide we will build <strong>Moonlit Signals</strong>, a tiny mystery visual novel. It is small enough to fit in a few scenes but uses <em>every</em> NovaTale feature at least once.</p>
+
+      <div class="placeholder">
+        <div class="icon">🌙</div>
+        <div class="meta">
+          <div class="label">Concept art: Moonlit Signals — rainy school library at night</div>
+          <div class="path">user-guide-assets/22-player-dialogue.png</div>
+        </div>
+      </div>
+
+      <h3>Premise</h3>
+      <p>The player joins <strong>Mira</strong> in the school library during a rainstorm. A strange signal appears on the astronomy club receiver. The player can choose whether to follow Mira to the rooftop, stay behind and investigate the library, or try to convince <strong>Ren</strong> (the skeptical classmate) to help.</p>
+
+      <h3>Cast</h3>
+      <ul>
+        <li><strong>Player</strong> — renameable protagonist (default display name: <em>You</em>)</li>
+        <li><strong>Mira</strong> — astronomy club student. Metadata: <code>trust</code>, <code>affection</code>, <code>knowsSignal</code>.</li>
+        <li><strong>Ren</strong> — skeptical classmate. Metadata: <code>trust</code>.</li>
+      </ul>
+
+      <h3>Variables</h3>
+      <table class="fields">
+        <tr><th>Name</th><th>Type</th><th>Default</th><th>Use</th></tr>
+        <tr><td><code>signalStrength</code></td><td>number</td><td>0</td><td>Mystery progress</td></tr>
+        <tr><td><code>hasKeycard</code></td><td>boolean</td><td>false</td><td>Unlocks the rooftop route</td></tr>
+        <tr><td><code>route</code></td><td>string</td><td>library</td><td>Current story route</td></tr>
+        <tr><td><code>trust</code></td><td>number</td><td>10</td><td>Global trust score</td></tr>
+      </table>
+
+      <h3>Scenes</h3>
+      <ol>
+        <li><strong>Main Menu</strong> — rooftop observatory background, New Game / Load / Preferences / Quit buttons.</li>
+        <li><strong>Library Signal</strong> — image scene, Mira speaks, branch buttons appear.</li>
+        <li><strong>Rooftop Door</strong> — conditional on <code>hasKeycard === true</code>; action: <code>signalStrength += 20</code>.</li>
+        <li><strong>Library Investigation</strong> — action: <code>trust += 5; Mira.trust += 10</code>.</li>
+        <li><strong>Signal Revelation</strong> — conditional on <code>signalStrength &gt;= 50</code>; ending scene.</li>
+      </ol>
+
+      <p>Every later section in this guide adds the next piece of Moonlit Signals so you can replicate it end-to-end while you read.</p>
+    </section>
+
+    <!-- ============ 4 ============ -->
+    <section id="sec-4">
+      <h2><span class="sec-num">4.</span>Activating NovaTale</h2>
+      <p>On first launch NovaTale presents an activation screen. You can pick <strong>Demo Mode</strong> to try the app with limits, or enter a <strong>license key</strong> to unlock everything.</p>
+
+      <div class="placeholder">
+        <div class="icon">🔐</div>
+        <div class="meta">
+          <div class="label">Screenshot: Activation screen with Demo Mode button and license key input</div>
+          <div class="path">user-guide-assets/31-license-activation.png</div>
+        </div>
+      </div>
+
+      <h3>Demo Mode</h3>
+      <p>Click <strong>🎮 Try Demo Mode</strong>. The button shows a spinner labelled <em>Activating Demo…</em> and you are taken to the Welcome screen. Demo Mode lets you use every editor screen with the following limits:</p>
+      <ul>
+        <li><strong>Max 2 projects</strong> total</li>
+        <li><strong>Max 3 characters</strong> per project</li>
+        <li><strong>Max 10 scenes</strong> per project</li>
+      </ul>
+      <p>When you hit one of these limits, an <strong>Upgrade Prompt</strong> appears with three options:</p>
+      <ul>
+        <li><span class="pill green">🔑 Activate License</span> — opens the activation screen as an overlay</li>
+        <li><span class="pill">🛒 Purchase License</span> — opens the Gumroad page in your browser</li>
+        <li><span class="pill gray">Continue with Demo</span> — dismisses the prompt</li>
+      </ul>
+
+      <div class="placeholder">
+        <div class="icon">⚠️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Upgrade Prompt modal — “Demo Limit Reached”</div>
+          <div class="path">user-guide-assets/32-upgrade-prompt.png</div>
+        </div>
+      </div>
+
+      <h3>License Key</h3>
+      <ol class="steps">
+        <li>Enter your key in the format <code>XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX</code>.</li>
+        <li>Click <strong>Activate License</strong> (or press <kbd>Enter</kbd>).</li>
+        <li>NovaTale verifies the key online and registers this device.</li>
+        <li>On success, you see <em>Activation Successful!</em> and are redirected after ~1.5 seconds.</li>
+      </ol>
+
+      <div class="callout note">
+        <span class="tag">Note</span>
+        Each license activates up to <strong>2 devices</strong>. If you exceed that, you must deactivate one before activating another.
+      </div>
+
+      <h3>Common activation errors</h3>
+      <table class="fields">
+        <tr><th>Error message</th><th>What it means</th></tr>
+        <tr><td>“Please enter a license key”</td><td>The input was empty.</td></tr>
+        <tr><td>“Invalid license key format”</td><td>The key does not match the expected format.</td></tr>
+        <tr><td>“Activation failed”</td><td>Gumroad verification rejected the key.</td></tr>
+        <tr><td>“Device limit reached (2 devices)”</td><td>Deactivate another device first.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 5 ============ -->
+    <section id="sec-5">
+      <h2><span class="sec-num">5.</span>Creating Your First Project</h2>
+      <p>From the Welcome screen, click <strong>Create New Project</strong>. This opens the Project Setup form.</p>
+
+      <div class="placeholder">
+        <div class="icon">📋</div>
+        <div class="meta">
+          <div class="label">Screenshot: Project Setup form with all fields filled for “Moonlit Signals”</div>
+          <div class="path">user-guide-assets/03-project-setup.png</div>
+        </div>
+      </div>
+
+      <h3>Form fields</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Type</th><th>Default</th><th>Notes</th></tr>
+        <tr><td><strong>Project Name *</strong></td><td>Text</td><td>—</td><td>Required. Must not be empty or whitespace.</td></tr>
+        <tr><td>Dialogue Box Background Color</td><td>Color + hex</td><td><code>#1e293b</code></td><td>The colour of the dialogue tile during gameplay.</td></tr>
+        <tr><td>Dialogue Text Color</td><td>Color + hex</td><td><code>#f1f5f9</code></td><td>The colour of the dialogue text body.</td></tr>
+        <tr><td>Dialogue Font</td><td>Dropdown</td><td>Arial, sans-serif</td><td>Six built-in choices (Arial, Times New Roman, Courier New, Georgia, Comic Sans MS, Verdana).</td></tr>
+      </table>
+
+      <h3>Moonlit Signals — recommended values</h3>
+      <ul>
+        <li>Project Name: <strong>Moonlit Signals</strong></li>
+        <li>Dialogue Box: deep indigo (<code>#1e1b4b</code>) with slight transparency</li>
+        <li>Dialogue Text: <code>#f1f5f9</code> (off-white)</li>
+        <li>Dialogue Font: <strong>Georgia, serif</strong> (gives a literary feel)</li>
+      </ul>
+
+      <p>Click <strong>Create Project</strong>. You are taken straight to the Dashboard.</p>
+
+      <div class="callout warn">
+        <span class="tag">Demo limit</span>
+        If you already have 2 projects in Demo Mode, the Upgrade Prompt appears instead of creating the project. Activate a license or delete an existing project to continue.
+      </div>
+
+      <h3>Opening an existing project</h3>
+      <p>From the Welcome screen, choose <strong>Open Existing Project</strong>. The Project Selector lists every project as a card with:</p>
+      <ul>
+        <li>Project name</li>
+        <li>Created date and last-modified date</li>
+        <li>Current text speed and BGM volume</li>
+        <li>A preview of the dialogue tile and text colours</li>
+        <li>A 🗑️ delete button (irreversible — asks for confirmation)</li>
+      </ul>
+
+      <div class="placeholder">
+        <div class="icon">📁</div>
+        <div class="meta">
+          <div class="label">Screenshot: Project Selector showing the Moonlit Signals card</div>
+          <div class="path">user-guide-assets/02-project-selector.png</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6 ============ -->
+    <section id="sec-6">
+      <h2><span class="sec-num">6.</span>Tour of the Dashboard</h2>
+      <p>The Dashboard is your main workspace. The left sidebar groups every editor screen into four sections; the main area shows the currently selected editor.</p>
+
+      <div class="placeholder">
+        <div class="icon">🧭</div>
+        <div class="meta">
+          <div class="label">Screenshot: Dashboard with sidebar groups labelled</div>
+          <div class="path">user-guide-assets/04-dashboard-sidebar.png</div>
+        </div>
+      </div>
+
+      <h3>Sidebar layout</h3>
+      <table class="fields">
+        <tr><th>Section</th><th>Entries</th></tr>
+        <tr><td><strong>Header</strong></td><td>NovaTale logo + current project name</td></tr>
+        <tr><td><strong>Quick Actions</strong></td><td>▶ Play Preview, 📦 Export Game</td></tr>
+        <tr><td><strong>Content</strong></td><td>Characters, Scenes, Scene Graph</td></tr>
+        <tr><td><strong>Systems</strong></td><td>Relationships, Variables</td></tr>
+        <tr><td><strong>Design</strong></td><td>Button Designer, Main Menu, Preferences</td></tr>
+        <tr><td><strong>Footer</strong></td><td>Close Project (returns to Welcome) + “by PixelLabs”</td></tr>
+      </table>
+
+      <h3>Recommended workflow order</h3>
+      <ol class="steps">
+        <li>Create a project (Section 5).</li>
+        <li>Add <strong>Characters</strong> (Section 7).</li>
+        <li>Define <strong>Variables</strong> (Section 9).</li>
+        <li>Set up <strong>Relationships</strong> (Section 8).</li>
+        <li>Create <strong>Scenes</strong> with media and dialogue (Section 10).</li>
+        <li>Connect scenes in the <strong>Scene Graph</strong> with branches (Sections 12–13).</li>
+        <li>Design reusable <strong>Button Styles</strong> (Section 14).</li>
+        <li>Design the <strong>Main Menu</strong> (Section 15).</li>
+        <li>Adjust <strong>Preferences</strong> (Section 16).</li>
+        <li>Test using <strong>Play Preview</strong> (Section 17).</li>
+        <li><strong>Export</strong> the game (Section 19).</li>
+      </ol>
+    </section>
+
+    <!-- ============ 7 ============ -->
+    <section id="sec-7">
+      <h2><span class="sec-num">7.</span>Characters</h2>
+      <p>Open <strong>Characters</strong> from the sidebar. The list shows every character as a card with portrait, name, gender, and edit/delete buttons.</p>
+
+      <div class="placeholder">
+        <div class="icon">👥</div>
+        <div class="meta">
+          <div class="label">Screenshot: Character Manager with three Moonlit Signals characters</div>
+          <div class="path">user-guide-assets/05-character-manager.png</div>
+        </div>
+      </div>
+
+      <p>Click <strong>+ Create New Character</strong> to open the Character form.</p>
+
+      <div class="placeholder">
+        <div class="icon">📝</div>
+        <div class="meta">
+          <div class="label">Screenshot: Character form with all sections expanded</div>
+          <div class="path">user-guide-assets/06-character-form.png</div>
+        </div>
+      </div>
+
+      <h3>Basic Information</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Required</th><th>Notes</th></tr>
+        <tr><td><strong>Character Name</strong></td><td>Yes</td><td>Used as the speaker label and as the key in dialogue expressions (e.g. <code>{Mira.trust}</code>).</td></tr>
+        <tr><td>Gender</td><td>No</td><td>Empty / Male / Female / Non-binary / Other.</td></tr>
+      </table>
+
+      <h3>Appearance</h3>
+      <ul>
+        <li><strong>Character Portrait</strong> — click to upload. Supported: <code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>gif</code>, <code>bmp</code>, <code>webp</code>. The image is stored as a base-64 data URI inside the project, so you do not need to keep the source file around. A remove button clears the image.</li>
+        <li><strong>Name Color</strong> — colour picker plus hex input (default <code>#4CAF50</code>). The speaker name in the dialogue box uses this colour.</li>
+      </ul>
+
+      <h3>Special Properties</h3>
+      <ul>
+        <li><strong>Mark as Protagonist</strong> — only one protagonist per project. If you tick this on a second character, NovaTale blocks the save and tells you which character is the existing protagonist.</li>
+        <li><strong>Allow players to rename this character</strong> — when ticked, an extra field appears called <strong>Default Display Name</strong>. This is the name shown to the player at game start; the player can override it via the rename prompt or the in-game Status Screen.</li>
+      </ul>
+
+      <h3>Additional Data (Metadata)</h3>
+      <p>Metadata is the most powerful part of a character. Add any number of key/value pairs by typing a key, typing a value, and clicking <strong>Add</strong>. Each entry appears as a removable chip. Metadata becomes available throughout the project as <code>CharacterName.fieldName</code> — usable in dialogue expressions, branch conditions, and branch actions.</p>
+
+      <div class="callout tip">
+        <span class="tag">Tip</span>
+        Treat numeric metadata as game stats. <code>trust</code>, <code>affection</code>, <code>love</code>, <code>health</code>, <code>mana</code>, <code>gold</code>, <code>strength</code>, <code>intelligence</code> — these all get nice auto-icons on the in-game Status Screen.
+      </div>
+
+      <h3>Moonlit Signals — create the cast</h3>
+
+      <div class="example">
+        <div class="title">Player (protagonist)</div>
+        Name: <strong>Player</strong> · Gender: leave empty · Portrait: any silhouette · Name Color: <code>#60a5fa</code> · Protagonist: ✔ · Allow rename: ✔ · Default Display Name: <strong>You</strong>
+      </div>
+
+      <div class="example">
+        <div class="title">Mira</div>
+        Name: <strong>Mira</strong> · Gender: Female · Name Color: <code>#a78bfa</code> · Portrait: user-guide-assets/07-mira-portrait.png · Metadata: <code>trust=35</code>, <code>affection=20</code>, <code>knowsSignal=false</code>
+      </div>
+
+      <div class="placeholder">
+        <div class="icon">🎨</div>
+        <div class="meta">
+          <div class="label">Screenshot: Mira character portrait</div>
+          <div class="path">user-guide-assets/07-mira-portrait.png</div>
+        </div>
+      </div>
+
+      <div class="example">
+        <div class="title">Ren</div>
+        Name: <strong>Ren</strong> · Gender: Male · Name Color: <code>#f87171</code> · Metadata: <code>trust=15</code>
+      </div>
+
+      <div class="callout warn">
+        <span class="tag">Demo limit</span>
+        Demo Mode allows a maximum of <strong>3 characters per project</strong>. Adding a fourth triggers the Upgrade Prompt. Moonlit Signals fits within this limit.
+      </div>
+    </section>
+
+    <!-- ============ 8 ============ -->
+    <section id="sec-8">
+      <h2><span class="sec-num">8.</span>Relationships</h2>
+      <p>The <strong>Relationships</strong> screen is a graph-based editor where each character appears as a node and each relationship as a directed arrow. Drag from one character's edge to another to create a new relationship.</p>
+
+      <div class="placeholder">
+        <div class="icon">🕸️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Relationship Manager with Player ↔ Mira ↔ Ren graph</div>
+          <div class="path">user-guide-assets/08-relationship-manager.png</div>
+        </div>
+      </div>
+
+      <h3>Canvas behaviour</h3>
+      <ul>
+        <li>Drag a character node anywhere to reposition it — the position is saved automatically.</li>
+        <li>Drag from one node's handle to another to start a new relationship. The Relationship form opens.</li>
+        <li>Click an existing edge to edit the relationship.</li>
+        <li>A minimap (bottom-right) and zoom controls (top-left) help you navigate large casts. In the minimap, Male nodes appear blue, Female nodes pink, and others purple.</li>
+        <li>If no characters exist yet, an overlay tells you to go to the Character Manager first.</li>
+      </ul>
+
+      <h3>Relationship form</h3>
+
+      <div class="placeholder">
+        <div class="icon">🔗</div>
+        <div class="meta">
+          <div class="label">Screenshot: Relationship form — Player → Mira, customizable label</div>
+          <div class="path">user-guide-assets/09-relationship-form.png</div>
+        </div>
+      </div>
+
+      <table class="fields">
+        <tr><th>Field</th><th>Required</th><th>Notes</th></tr>
+        <tr><td><strong>Relationship Type</strong></td><td>Yes</td><td>Free text — e.g. <em>friend</em>, <em>mentor</em>, <em>rival</em>, <em>sister</em>.</td></tr>
+        <tr><td>Allow players to customize this relationship</td><td>—</td><td><strong>Only appears when the source character is the protagonist.</strong> When ticked, the player is prompted for a custom label the first time they meet the target character in-game.</td></tr>
+        <tr><td>Default Label</td><td>—</td><td>Appears when customization is enabled. Shown to the player as the suggested default. Auto-syncs to <em>Relationship Type</em> unless you manually edit it.</td></tr>
+      </table>
+
+      <h3>Directed relationships</h3>
+      <p>Relationships are directed: <em>Mira → Player</em> and <em>Player → Mira</em> are two separate edges. This lets you express asymmetric relationships (Mira sees you as a “friend”; you might see her as a “mentor”).</p>
+
+      <h3>Editing and deleting</h3>
+      <p>Click an existing relationship edge to reopen the form in edit mode. A 🗑️ <strong>Delete Relationship</strong> button appears at the bottom-right of the form; clicking it shows a confirmation modal.</p>
+
+      <h3>Moonlit Signals — relationships</h3>
+      <div class="example">
+        <div class="title">Player → Mira</div>
+        Relationship Type: <em>classmate</em> · Customizable: ✔ · Default Label: <em>classmate</em> · The player can later say “Mira is my <code>{rel.Mira}</code>.”
+      </div>
+      <div class="example">
+        <div class="title">Player → Ren</div>
+        Relationship Type: <em>classmate</em> · Customizable: ✔ · Default Label: <em>classmate</em>
+      </div>
+      <div class="example">
+        <div class="title">Mira → Player</div>
+        Relationship Type: <em>study partner</em> · (no customization — source is not the protagonist)
+      </div>
+    </section>
+
+    <!-- ============ 9 ============ -->
+    <section id="sec-9">
+      <h2><span class="sec-num">9.</span>Variables</h2>
+      <p>The <strong>Variables</strong> screen defines global story state. Variables can be referenced in dialogue, used in branch conditions, and modified by branch actions.</p>
+
+      <div class="placeholder">
+        <div class="icon">📊</div>
+        <div class="meta">
+          <div class="label">Screenshot: Variable Manager listing the four Moonlit Signals variables</div>
+          <div class="path">user-guide-assets/10-variable-manager.png</div>
+        </div>
+      </div>
+
+      <h3>Variable form</h3>
+
+      <div class="placeholder">
+        <div class="icon">✏️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Variable form creating signalStrength (number, default 0)</div>
+          <div class="path">user-guide-assets/11-variable-form.png</div>
+        </div>
+      </div>
+
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td><strong>Variable Name *</strong></td><td>Required. Use <code>camelCase</code> or <code>snake_case</code>.</td></tr>
+        <tr><td><strong>Variable Type *</strong></td><td>String / Number / Boolean. <strong>Locked after creation</strong> — you cannot change a variable's type once it exists.</td></tr>
+        <tr><td>Default Value</td><td>The input adapts to the chosen type. String → text input. Number → numeric input (decimals allowed). Boolean → dropdown of <em>true</em> / <em>false</em>.</td></tr>
+        <tr><td>Description</td><td>Optional. Free text — helpful for documenting why this variable exists.</td></tr>
+      </table>
+
+      <div class="callout warn">
+        <span class="tag">Validation</span>
+        <ul>
+          <li>Number type — value must parse as a valid number.</li>
+          <li>Boolean type — value must be <em>true</em> or <em>false</em>.</li>
+          <li>Type cannot be changed after creation; delete and recreate instead.</li>
+        </ul>
+      </div>
+
+      <h3>Moonlit Signals — create these four variables</h3>
+      <table class="fields">
+        <tr><th>Name</th><th>Type</th><th>Default</th><th>Description</th></tr>
+        <tr><td><code>signalStrength</code></td><td>Number</td><td>0</td><td>Tracks how much the player has progressed in the mystery.</td></tr>
+        <tr><td><code>hasKeycard</code></td><td>Boolean</td><td>false</td><td>Whether the rooftop is accessible.</td></tr>
+        <tr><td><code>route</code></td><td>String</td><td>library</td><td>Stores the current story route — <em>library</em>, <em>rooftop</em>, etc.</td></tr>
+        <tr><td><code>trust</code></td><td>Number</td><td>10</td><td>A global trust score used for endings.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 10 ============ -->
+    <section id="sec-10">
+      <h2><span class="sec-num">10.</span>Scenes</h2>
+      <p>The <strong>Scenes</strong> screen is where you create individual story moments. Each card in the list shows the media-type icon, scene name, speaker (if any), and edit/delete buttons. Click <strong>+ Create New Scene</strong> to open the Scene form.</p>
+
+      <div class="placeholder">
+        <div class="icon">🎬</div>
+        <div class="meta">
+          <div class="label">Screenshot: Scene Manager listing the five Moonlit Signals scenes</div>
+          <div class="path">user-guide-assets/12-scene-manager.png</div>
+        </div>
+      </div>
+
+      <h3>Scene form — Basic Information</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Required</th><th>Notes</th></tr>
+        <tr><td><strong>Scene Name *</strong></td><td>Yes</td><td>Used in the Scene Graph and on save records.</td></tr>
+        <tr><td><strong>Media Type *</strong></td><td>Yes</td><td>Image (default) / Video (MP4) / None.</td></tr>
+      </table>
+
+      <h3>Media Type behaviour</h3>
+      <ul>
+        <li><strong>Image</strong> — show a background image. Dialogue, voice, and BGM are all available. Supported file types: <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>, <code>.gif</code>, <code>.webp</code>.</li>
+        <li><strong>Video (MP4)</strong> — play a cinematic clip. Dialogue and speaker fields are <em>disabled and hidden</em>; you cannot show dialogue on a video scene. Supported: <code>.mp4</code>, <code>.webm</code>, <code>.mov</code>.</li>
+        <li><strong>None</strong> — pure dialogue/logic with no background media. Dialogue, voice, and BGM still available.</li>
+      </ul>
+
+      <div class="placeholder">
+        <div class="icon">🖼️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Scene form — image scene with all dialogue + audio fields visible</div>
+          <div class="path">user-guide-assets/13-scene-form-image.png</div>
+        </div>
+      </div>
+
+      <div class="placeholder">
+        <div class="icon">🎥</div>
+        <div class="meta">
+          <div class="label">Screenshot: Scene form — video scene with dialogue fields hidden</div>
+          <div class="path">user-guide-assets/14-scene-form-video.png</div>
+        </div>
+      </div>
+
+      <h3>Media File</h3>
+      <p>When the media type is <em>Image</em> or <em>Video</em>, click <strong>Browse</strong> to choose a file. The path appears in a read-only text field. Use the × button to clear the selection. The file lives on disk; NovaTale stores a reference to it.</p>
+
+      <h3>Dialogue Settings (image and none scenes only)</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td><strong>Show Dialogue</strong></td><td>Checkbox, default on. Unchecking hides Speaker and Dialogue Text and prevents them from being saved.</td></tr>
+        <tr><td><strong>Speaker</strong></td><td>Required when Show Dialogue is on. Dropdown of all characters in the project. If no characters exist, a warning sends you to the Character Manager.</td></tr>
+        <tr><td>Dialogue Text</td><td>Multi-line. Supports template expressions in <code>{ }</code> (see <a href="#sec-11">Section 11</a>).</td></tr>
+        <tr><td>Voice Audio</td><td>Optional file picker (mp3 / wav / ogg / m4a). When set, a <strong>Voice Volume</strong> slider (0–100%) appears.</td></tr>
+      </table>
+
+      <h3>Background Music</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td>BGM File</td><td>Optional audio file picker. If empty, the project's <em>Global BGM</em> (set in Preferences) is used.</td></tr>
+        <tr><td>BGM Volume</td><td>Always visible. 0–100%, default 80%.</td></tr>
+        <tr><td>Loop BGM</td><td>Visible only when a BGM file is selected. Default on.</td></tr>
+      </table>
+
+      <h3>Moonlit Signals — build the “Library Signal” scene</h3>
+      <div class="example">
+        <div class="title">Library Signal</div>
+        Media Type: <strong>Image</strong> · Media File: <em>library-rain.png</em> · Show Dialogue: ✔ · Speaker: <strong>Mira</strong> · Dialogue: “The signal changed when you chose to trust me, <code>{Player.name}</code>.” · Voice Audio: <em>mira-line-01.mp3</em> · Voice Volume: 100 · BGM: <em>ambient-night.mp3</em> · BGM Volume: 70 · Loop BGM: ✔
+      </div>
+
+      <div class="callout warn">
+        <span class="tag">Demo limit</span>
+        Demo Mode allows up to <strong>10 scenes per project</strong>. Moonlit Signals' five scenes fit comfortably inside this.
+      </div>
+
+      <h3>Validation rules</h3>
+      <ul>
+        <li>Scene name must not be empty.</li>
+        <li>Image scenes must have a media file.</li>
+        <li>Video scenes must have a media file.</li>
+        <li>If Show Dialogue is on (and it isn't a video scene), Speaker is required.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 11 ============ -->
+    <section id="sec-11">
+      <h2><span class="sec-num">11.</span>Dialogue Expressions</h2>
+      <p>Inside any dialogue text — and any place that accepts an expression — anything between <code>{</code> and <code>}</code> is evaluated as a JavaScript-style expression at runtime. This is how you make dialogue react to player choices.</p>
+
+      <h3>What you can access</h3>
+      <table class="fields">
+        <tr><th>Context</th><th>Syntax</th><th>Example</th></tr>
+        <tr><td>Variables</td><td><code>name</code></td><td><code>{signalStrength}</code></td></tr>
+        <tr><td>Character properties</td><td><code>Character.name</code>, <code>Character.gender</code></td><td><code>{Mira.name}</code></td></tr>
+        <tr><td>Character metadata</td><td><code>Character.fieldName</code></td><td><code>{Mira.trust}</code></td></tr>
+        <tr><td>Custom relationship label</td><td><code>rel.CharacterName</code></td><td><code>Mira is my {rel.Mira}.</code></td></tr>
+        <tr><td>Arithmetic</td><td><code>+ - * / %</code></td><td><code>{100 - signalStrength} to go</code></td></tr>
+        <tr><td>Comparison</td><td><code>=== !== &gt; &lt; &gt;= &lt;=</code></td><td><code>{trust &gt; 50 ? "ally" : "stranger"}</code></td></tr>
+        <tr><td>Logical</td><td><code>&amp;&amp; || !</code></td><td><code>{hasKeycard &amp;&amp; signalStrength &gt; 30}</code></td></tr>
+        <tr><td>Ternary</td><td><code>cond ? a : b</code></td><td><code>{hasKeycard ? "rooftop opens" : "door stays shut"}</code></td></tr>
+      </table>
+
+      <h3>Worked examples (Moonlit Signals)</h3>
+      <pre><code>Mira's trust is currently {Mira.trust}.</code></pre>
+      <pre><code>The signal strength is {signalStrength}. You need {Math.max(0, 50 - signalStrength)} more to break the code.</code></pre>
+      <pre><code>{hasKeycard ? "The rooftop door unlocks with a click." : "The door refuses to open."}</code></pre>
+      <pre><code>Mira is my {rel.Mira}.</code></pre>
+      <pre><code>{Mira.trust &gt;= 40 &amp;&amp; hasKeycard ? "Mira hands you the keycard." : "Mira hesitates."}</code></pre>
+
+      <h3>Error behaviour</h3>
+      <ul>
+        <li><strong>Mismatched braces</strong> are detected before evaluation. The error tells you how many opening vs closing braces it found.</li>
+        <li><strong>Empty expressions</strong> (<code>{}</code>) render as an empty string.</li>
+        <li><strong>Runtime errors</strong> (e.g. referencing a variable that doesn't exist) cause the expression to render as-is, surrounded by its braces, and the error is logged to the console.</li>
+      </ul>
+
+      <div class="callout tip">
+        <span class="tag">Tip</span>
+        Always test important dialogue lines in Play Preview. If something looks off, open the dev console (View → Toggle Developer Tools in dev mode) to see the underlying error.
+      </div>
+    </section>
+
+    <!-- ============ 12 ============ -->
+    <section id="sec-12">
+      <h2><span class="sec-num">12.</span>The Scene Graph</h2>
+      <p>The <strong>Scene Graph</strong> turns the scenes you created into a connected map. Open it from the sidebar.</p>
+
+      <div class="placeholder">
+        <div class="icon">🌳</div>
+        <div class="meta">
+          <div class="label">Screenshot: Scene Graph showing five Moonlit Signals scenes connected</div>
+          <div class="path">user-guide-assets/15-scene-graph.png</div>
+        </div>
+      </div>
+
+      <h3>Canvas controls</h3>
+      <ul>
+        <li><strong>Drag</strong> the background to pan.</li>
+        <li><strong>Scroll / pinch</strong> to zoom.</li>
+        <li><strong>Top-left controls</strong> let you zoom in/out and fit-to-view.</li>
+        <li><strong>Bottom-right minimap</strong> shows your whole project at a glance.</li>
+        <li>Click <strong>+ Add Scene</strong> in the header to create a new scene without leaving the graph.</li>
+      </ul>
+
+      <h3>Scene nodes</h3>
+
+      <div class="placeholder">
+        <div class="icon">🔲</div>
+        <div class="meta">
+          <div class="label">Screenshot: A single scene node showing badges for Dialogue and BGM</div>
+          <div class="path">user-guide-assets/16-scene-graph-node.png</div>
+        </div>
+      </div>
+
+      <p>Each scene appears as a node with:</p>
+      <ul>
+        <li>A header showing the media-type icon and scene name</li>
+        <li>Feature badges — <span class="pill">💬 Dialogue</span> if a speaker is set, <span class="pill">🎵 BGM</span> if BGM is set</li>
+        <li>A short preview of the dialogue text (first 50 characters)</li>
+        <li>An <strong>Edit</strong> button at the bottom</li>
+        <li><strong>Eight connection handles</strong> (one on each side, in/out) so you can connect from any edge</li>
+      </ul>
+
+      <p>Drag a node to reposition it. The new position is saved automatically when you release.</p>
+
+      <h3>Edges (branches)</h3>
+      <ul>
+        <li><strong>Solid amber edge</strong> = a default (unconditional) branch.</li>
+        <li><strong>Dashed indigo edge</strong> = a conditional branch (animated for emphasis).</li>
+        <li>The edge label shows the transition type and, if any, the condition expression — e.g. <code>fade (signalStrength &gt;= 50)</code>.</li>
+        <li>Click an edge to edit the branch.</li>
+        <li>Drag an edge's endpoint to reconnect it to a different node.</li>
+      </ul>
+
+      <h3>Starting scene detection</h3>
+      <p>NovaTale automatically picks the starting scene as: the scene with <strong>no incoming branches</strong> and <strong>at least one outgoing branch</strong>. If no such scene exists, you cannot preview or export the project — you will be told to fix it.</p>
+
+      <div class="callout warn">
+        <span class="tag">Watch out</span>
+        Self-loops are blocked (“Cannot connect a scene to itself!”) and duplicate connections between the same two scenes are also blocked (“A branch between these scenes already exists!”).
+      </div>
+    </section>
+
+    <!-- ============ 13 ============ -->
+    <section id="sec-13">
+      <h2><span class="sec-num">13.</span>Branches</h2>
+      <p>A <strong>branch</strong> is a directed connection from one scene to another. Branches carry the transition effect, optional condition, optional state-changing action, and optional button display.</p>
+
+      <p>Open the Branch form by either:</p>
+      <ul>
+        <li>Connecting two nodes in the Scene Graph by dragging from one handle to another, or</li>
+        <li>Clicking an existing edge.</li>
+      </ul>
+
+      <div class="placeholder">
+        <div class="icon">🔀</div>
+        <div class="meta">
+          <div class="label">Screenshot: Branch form — “Library Signal → Library Investigation”</div>
+          <div class="path">user-guide-assets/17-branch-form.png</div>
+        </div>
+      </div>
+
+      <h3>Transition</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td><strong>Transition Type</strong></td><td>Fade · Dissolve · Slide Left · Slide Right · Wipe · None.</td></tr>
+        <tr><td><strong>Duration (ms)</strong></td><td>Slider 100–2000 ms in 100 ms steps, default 500 ms. Hidden when Transition Type is <em>None</em>.</td></tr>
+      </table>
+
+      <h3>Logic — Condition and Actions</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td><strong>Condition</strong></td><td>Optional. JavaScript expression. The branch can be taken only if this evaluates to <code>true</code>. Empty means the branch is always available.</td></tr>
+        <tr><td><strong>Actions</strong></td><td>Optional. JavaScript code that runs the moment the branch is taken — used to mutate variables or character metadata. Statements separated by <code>;</code>.</td></tr>
+        <tr><td><strong>Default Branch</strong></td><td>Checkbox. The default branch is used as a fallback when no other branch's condition matches.</td></tr>
+      </table>
+
+      <h3>Examples — conditions</h3>
+      <pre><code>signalStrength &gt;= 50</code></pre>
+      <pre><code>Mira.trust &gt; 40 &amp;&amp; hasKeycard === true</code></pre>
+      <pre><code>route === "rooftop"</code></pre>
+
+      <h3>Examples — actions</h3>
+      <pre><code>signalStrength += 10;
+trust += 5;</code></pre>
+      <pre><code>Mira.trust += 15;
+Mira.knowsSignal = true;
+route = "rooftop";</code></pre>
+
+      <h3>Button Configuration (optional)</h3>
+      <p>If you add <strong>Button Text</strong>, this branch becomes a clickable button shown to the player. If Button Text is empty, the branch <strong>auto-advances</strong> (after the dialogue plays out, the engine follows the branch automatically).</p>
+
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td>Button Text</td><td>Optional. Supports template expressions (e.g. <code>Trust Mira ({Mira.trust})</code>).</td></tr>
+        <tr><td>Button Style</td><td>Optional. Pick from your reusable styles (Section 14). If empty, the engine uses default styling.</td></tr>
+      </table>
+
+      <div class="callout tip">
+        <span class="tag">Pattern</span>
+        Use <strong>conditions without button text</strong> to silently fork the story based on state. Use <strong>button text without conditions</strong> for plain player choices. Combine both for conditional choices (e.g. a button that only appears when <code>hasKeycard === true</code>).
+      </div>
+
+      <h3>Deleting a branch</h3>
+      <p>Open the branch form by clicking the edge, then click the 🗑️ <strong>Delete Branch</strong> button at the bottom right. A confirmation modal shows the branch's source, target, transition, and condition. Click <strong>Delete</strong> to confirm.</p>
+
+      <h3>Moonlit Signals — branches from “Library Signal”</h3>
+      <div class="example">
+        <div class="title">→ Library Investigation</div>
+        Transition: Fade 500ms · Condition: <em>(none)</em> · Action: <code>trust += 5; Mira.trust += 10; route = "library";</code> · Button Text: <strong>Stay in the library</strong> · Button Style: <em>Primary</em>
+      </div>
+      <div class="example">
+        <div class="title">→ Rooftop Door</div>
+        Transition: Dissolve 600ms · Condition: <code>hasKeycard === true</code> · Action: <code>signalStrength += 20; route = "rooftop";</code> · Button Text: <strong>Follow the signal</strong> · Button Style: <em>Primary</em>
+      </div>
+      <div class="example">
+        <div class="title">→ Ask Ren for help</div>
+        Transition: Fade 500ms · Condition: <code>Ren.trust &gt;= 20</code> · Action: <code>Ren.trust += 5;</code> · Button Text: <code>Talk to Ren ({Ren.trust})</code> · Button Style: <em>Secondary</em>
+      </div>
+      <div class="example">
+        <div class="title">→ Signal Revelation (default)</div>
+        Default Branch: ✔ · Transition: Fade 800ms · Condition: <em>(none)</em> · Action: <em>(none)</em> · Button Text: <em>(empty — auto-advance fallback)</em>
+      </div>
+    </section>
+
+    <!-- ============ 14 ============ -->
+    <section id="sec-14">
+      <h2><span class="sec-num">14.</span>Button Designer</h2>
+      <p>The <strong>Button Designer</strong> creates reusable button styles. Define a style once and apply it to branch buttons in scenes and buttons on the main menu.</p>
+
+      <div class="placeholder">
+        <div class="icon">🎨</div>
+        <div class="meta">
+          <div class="label">Screenshot: Button Designer list with “Primary” and “Secondary” styles</div>
+          <div class="path">user-guide-assets/18-button-designer-list.png</div>
+        </div>
+      </div>
+
+      <p>Click <strong>+ Create New Button Style</strong>. The form has two columns: controls on the left, a live preview on the right.</p>
+
+      <div class="placeholder">
+        <div class="icon">🖌️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Button Designer form with live preview</div>
+          <div class="path">user-guide-assets/19-button-designer-form.png</div>
+        </div>
+      </div>
+
+      <h3>All style properties</h3>
+      <table class="fields">
+        <tr><th>Section</th><th>Field</th><th>Default</th></tr>
+        <tr><td rowspan="5"><strong>Spacing</strong></td>
+            <td>Style Name *</td><td>—</td></tr>
+        <tr><td>Padding X</td><td>24px</td></tr>
+        <tr><td>Padding Y</td><td>16px</td></tr>
+        <tr><td>Min Width</td><td>200px</td></tr>
+        <tr><td>Min Height</td><td>48px</td></tr>
+        <tr><td rowspan="4"><strong>Border</strong></td>
+            <td>Border Radius</td><td>8px</td></tr>
+        <tr><td>Border Width</td><td>2px</td></tr>
+        <tr><td>Border Color</td><td><code>#6366f1</code></td></tr>
+        <tr><td>Border Style</td><td>solid (solid · dashed · dotted · none)</td></tr>
+        <tr><td rowspan="4"><strong>Colours</strong></td>
+            <td>Background Color</td><td><code>#6366f1</code></td></tr>
+        <tr><td>Text Color</td><td><code>#ffffff</code></td></tr>
+        <tr><td>Hover Background Color</td><td><code>#4f46e5</code></td></tr>
+        <tr><td>Hover Text Color</td><td><code>#ffffff</code></td></tr>
+        <tr><td rowspan="4"><strong>Typography</strong></td>
+            <td>Font Size</td><td>18px</td></tr>
+        <tr><td>Font Family</td><td>inherit</td></tr>
+        <tr><td>Font Weight</td><td>600</td></tr>
+        <tr><td>Text Transform</td><td>none (none · uppercase · lowercase · capitalize)</td></tr>
+        <tr><td rowspan="3"><strong>Effects</strong></td>
+            <td>Box Shadow</td><td><code>0 4px 15px rgba(99,102,241,0.3)</code></td></tr>
+        <tr><td>Hover Box Shadow</td><td><code>0 6px 20px rgba(99,102,241,0.5)</code></td></tr>
+        <tr><td>Transition</td><td><code>all 0.3s ease</code></td></tr>
+      </table>
+
+      <h3>Live preview</h3>
+      <p>The right column shows the button in two states: <em>Normal</em> and <em>Hover</em>. Move your mouse over the Hover preview to see hover colours and box-shadow actually transition.</p>
+
+      <h3>Moonlit Signals — define two styles</h3>
+      <div class="example">
+        <div class="title">Primary</div>
+        Background <code>#6366f1</code> · Hover <code>#4f46e5</code> · Font 18 / 600 · Radius 10px · Box shadow soft purple. Used for the main story choices.
+      </div>
+      <div class="example">
+        <div class="title">Secondary</div>
+        Background transparent · Border <code>#94a3b8</code> 2px solid · Text <code>#e2e8f0</code> · Hover background <code>#1e293b</code>. Used for optional and exploratory choices.
+      </div>
+
+      <div class="callout note">
+        <span class="tag">Note</span>
+        Deleting a button style asks for confirmation and warns you that branches using this style will revert to default styling. Existing branches keep working; they just look generic.
+      </div>
+    </section>
+
+    <!-- ============ 15 ============ -->
+    <section id="sec-15">
+      <h2><span class="sec-num">15.</span>Main Menu Designer</h2>
+      <p>The <strong>Main Menu Designer</strong> builds your game's title screen on a fixed <strong>1920×1080</strong> design canvas. Open it from the sidebar.</p>
+
+      <div class="placeholder">
+        <div class="icon">🏠</div>
+        <div class="meta">
+          <div class="label">Screenshot: Main Menu Designer with Moonlit Signals rooftop background</div>
+          <div class="path">user-guide-assets/20-main-menu-designer.png</div>
+        </div>
+      </div>
+
+      <h3>Canvas configuration</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td>Background Image</td><td>Optional. File picker. Displayed full-canvas.</td></tr>
+        <tr><td>Background Video</td><td>Optional. File picker. Plays in the background — note this is partial in the current build.</td></tr>
+        <tr><td>Background Color</td><td>Fallback when no image/video is set. Default <code>#1a1a2e</code>.</td></tr>
+        <tr><td>Menu BGM</td><td>Optional audio file. Plays when the player is on the main menu.</td></tr>
+        <tr><td>BGM Volume</td><td>0–100, default 80.</td></tr>
+        <tr><td>Show Grid</td><td>Toggle a guide-grid overlay on the canvas for alignment.</td></tr>
+      </table>
+
+      <h3>Menu buttons</h3>
+      <p>Click <strong>+ Add Button</strong>. Pick a button type and a button style; the new button drops in the centre of the canvas. Drag it anywhere; double-click to edit text and reassign the style.</p>
+
+      <table class="fields">
+        <tr><th>Type</th><th>What it does at runtime</th><th>Status</th></tr>
+        <tr><td>New Game</td><td>Starts the game from the detected starting scene; clears variables.</td><td><span class="pill green">Functional</span></td></tr>
+        <tr><td>Continue</td><td>Resumes from the quick-save or auto-save slot if one exists; otherwise behaves like New Game.</td><td><span class="pill green">Functional</span></td></tr>
+        <tr><td>Load Game</td><td>Opens the Save / Load overlay.</td><td><span class="pill green">Functional</span></td></tr>
+        <tr><td>Preferences</td><td>Opens the in-game Settings overlay.</td><td><span class="pill green">Functional</span></td></tr>
+        <tr><td>Gallery</td><td>Reserved — designable but no built-in gallery module yet.</td><td><span class="pill gold">Placeholder</span></td></tr>
+        <tr><td>Extras</td><td>Reserved — designable but no built-in extras module yet.</td><td><span class="pill gold">Placeholder</span></td></tr>
+        <tr><td>Credits</td><td>Reserved — designable but no built-in credits screen yet.</td><td><span class="pill gold">Placeholder</span></td></tr>
+        <tr><td>Quit</td><td>Closes the game window.</td><td><span class="pill green">Functional</span></td></tr>
+        <tr><td>Custom URL</td><td>Opens the URL you supply in the player's default browser.</td><td><span class="pill green">Functional</span></td></tr>
+      </table>
+
+      <h3>Button properties</h3>
+      <ul>
+        <li><strong>Button Text</strong> — defaults to a sensible label per type (e.g. “New Game”). For Custom URL, supply both the text and the URL.</li>
+        <li><strong>Button Style</strong> — pick from your reusable styles. <em>You must create at least one button style before adding menu buttons.</em></li>
+        <li><strong>X / Y position</strong> — set in pixels on the 1920×1080 canvas; you can also drag.</li>
+      </ul>
+
+      <div class="callout warn">
+        <span class="tag">Watch out</span>
+        If no main menu buttons exist, the engine skips the menu entirely and jumps straight to the starting scene when the game launches.
+      </div>
+
+      <h3>Moonlit Signals — menu</h3>
+      <div class="example">
+        <div class="title">Layout</div>
+        Background image: <em>rooftop-observatory.png</em> · Menu BGM: <em>menu-theme.mp3</em> @ 70% · Buttons (top-down, centred horizontally): <strong>New Game</strong> · <strong>Continue</strong> · <strong>Load Game</strong> · <strong>Preferences</strong> · <strong>Quit</strong>, all using the <em>Primary</em> button style.
+      </div>
+    </section>
+
+    <!-- ============ 16 ============ -->
+    <section id="sec-16">
+      <h2><span class="sec-num">16.</span>Preferences</h2>
+      <p>The <strong>Preferences</strong> screen sets project-wide defaults that apply to the preview player and the exported game.</p>
+
+      <div class="placeholder">
+        <div class="icon">⚙️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Preferences screen with dialogue preview, BGM, and gameplay sliders</div>
+          <div class="path">user-guide-assets/21-preferences.png</div>
+        </div>
+      </div>
+
+      <h3>Project Information</h3>
+      <p>The <strong>Project Name</strong> can be edited here. It is used as the title in save records and is the default game name when exporting.</p>
+
+      <h3>Dialogue Appearance</h3>
+      <ul>
+        <li>Dialogue Box Background Color (hex + picker)</li>
+        <li>Dialogue Text Color (hex + picker)</li>
+        <li>Dialogue Font — Arial / Times New Roman / Courier New / Georgia / Comic Sans MS / Verdana</li>
+        <li>Live <strong>Preview</strong> box reflecting your current choices</li>
+      </ul>
+
+      <h3>Global Background Music</h3>
+      <p>Set a Global BGM that plays for any scene that does not have its own BGM. The music continues across scene boundaries without restarting — useful for keeping a coherent ambience through a chapter. Click <strong>Remove</strong> to clear it (requires confirmation).</p>
+
+      <h3>Gameplay defaults</h3>
+      <table class="fields">
+        <tr><th>Slider</th><th>Range</th><th>Default</th><th>Note</th></tr>
+        <tr><td>Text Speed</td><td>1–100</td><td>50</td><td>Higher = faster typewriter effect.</td></tr>
+        <tr><td>Default BGM Volume</td><td>0–100</td><td>80</td><td>Used when scenes do not override it.</td></tr>
+        <tr><td>Default SFX Volume</td><td>0–100</td><td>80</td><td>Used for in-engine sound effects.</td></tr>
+        <tr><td>Default Voice Volume</td><td>0–100</td><td>100</td><td>Used for voice lines on scenes.</td></tr>
+      </table>
+
+      <h3>Reset / Save</h3>
+      <ul>
+        <li><strong>Reset to Defaults</strong> — confirmation prompt; resets every preference except the project name.</li>
+        <li><strong>Save Changes</strong> — applies and persists. A green message confirms (auto-dismisses after ~3 seconds).</li>
+      </ul>
+    </section>
+
+    <!-- ============ 17 ============ -->
+    <section id="sec-17">
+      <h2><span class="sec-num">17.</span>Playing &amp; Previewing</h2>
+      <p>Click <strong>▶ Play Preview</strong> in the sidebar to launch your project in the in-app player. The preview supports almost everything the exported game does, so use it as your primary testing tool.</p>
+
+      <div class="placeholder">
+        <div class="icon">🎮</div>
+        <div class="meta">
+          <div class="label">Screenshot: Player showing dialogue box with Mira speaking</div>
+          <div class="path">user-guide-assets/22-player-dialogue.png</div>
+        </div>
+      </div>
+
+      <h3>The dialogue box</h3>
+      <ul>
+        <li>Typewriter effect reveals characters one by one at your project's Text Speed.</li>
+        <li>Click anywhere on the dialogue area to skip the animation to the end of the line.</li>
+        <li>Click again to advance to the next line.</li>
+        <li>A small ▼ indicator appears when the line is fully revealed.</li>
+        <li>Character name appears top-left in the character's <em>Name Color</em>.</li>
+      </ul>
+
+      <h3>Branch buttons</h3>
+
+      <div class="placeholder">
+        <div class="icon">🔘</div>
+        <div class="meta">
+          <div class="label">Screenshot: Two branch buttons appearing on the Library Signal scene</div>
+          <div class="path">user-guide-assets/23-player-choice-buttons.png</div>
+        </div>
+      </div>
+
+      <p>When the current scene has outgoing branches with button text, those branches render as clickable buttons styled with the assigned Button Style. Conditional branches that evaluate to <code>false</code> are hidden. If <em>all</em> conditional branches evaluate false, the engine takes the <strong>default branch</strong> automatically.</p>
+
+      <h3>Character name input</h3>
+
+      <div class="placeholder">
+        <div class="icon">✏️</div>
+        <div class="meta">
+          <div class="label">Screenshot: Rename prompt asking for the protagonist's name</div>
+          <div class="path">user-guide-assets/27-rename-prompt.png</div>
+        </div>
+      </div>
+
+      <p>If a character is the protagonist <em>and</em> renameable, the player is shown a modal at game start to enter a name. The new name flows through every dialogue line that references <code>{Player.name}</code> and is persisted in saves.</p>
+
+      <h3>Relationship label prompts</h3>
+
+      <div class="placeholder">
+        <div class="icon">💞</div>
+        <div class="meta">
+          <div class="label">Screenshot: Relationship prompt — “How does Player view Mira?”</div>
+          <div class="path">user-guide-assets/28-relationship-prompt.png</div>
+        </div>
+      </div>
+
+      <p>The first time the player meets a character involved in a customizable protagonist relationship, the player is asked to pick a custom label. They can enter forward and reverse labels (e.g. “friend” / “admirer”). These labels are accessible in dialogue via <code>{rel.CharacterName}</code>.</p>
+
+      <h3>Status Screen</h3>
+      <p>Press <kbd>S</kbd> to open the Status Screen overlay. It shows:</p>
+
+      <div class="placeholder">
+        <div class="icon">📊</div>
+        <div class="meta">
+          <div class="label">Screenshot: Status Screen with Mira's portrait and stat bars</div>
+          <div class="path">user-guide-assets/24-status-screen.png</div>
+        </div>
+      </div>
+
+      <ul>
+        <li>Each character's portrait, name, and gender</li>
+        <li>An ✏️ rename icon next to any renameable character — click to rename in-game</li>
+        <li>Metadata rendered as stat cards with auto-icons (love, health, mana, gold, etc.) and progress bars for numeric values</li>
+        <li>A <em>Global Progress</em> section listing all variables and their current values</li>
+      </ul>
+
+      <h3>Settings overlay</h3>
+
+      <div class="placeholder">
+        <div class="icon">🎚️</div>
+        <div class="meta">
+          <div class="label">Screenshot: In-game Settings overlay</div>
+          <div class="path">user-guide-assets/26-settings-overlay.png</div>
+        </div>
+      </div>
+
+      <p>The Settings overlay (gear icon, or the Preferences menu button) gives the player live control over BGM Volume, Voice Volume, SFX Volume, and Text Speed.</p>
+
+      <h3>Audio behaviour</h3>
+      <p>The player picks the BGM in this order:</p>
+      <ol>
+        <li>The current scene's BGM, if set.</li>
+        <li>Otherwise, the BGM already playing carries forward.</li>
+        <li>Otherwise, the project's Global BGM (Preferences).</li>
+        <li>Otherwise, silence.</li>
+      </ol>
+      <p>Voice audio plays once when a dialogue line appears and stops on advance. SFX trigger from branch actions or scene actions when used.</p>
+
+      <h3>Keyboard shortcuts</h3>
+      <table class="fields">
+        <tr><th>Key</th><th>Effect</th></tr>
+        <tr><td><kbd>F5</kbd></td><td>Quick Save (writes to the “quick” slot).</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>Quick Load (reads from the “quick” slot).</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Toggle Status Screen.</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Close any open overlay.</td></tr>
+        <tr><td><strong>Click</strong></td><td>Advance dialogue / skip typewriter.</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 18 ============ -->
+    <section id="sec-18">
+      <h2><span class="sec-num">18.</span>Save &amp; Load</h2>
+
+      <div class="placeholder">
+        <div class="icon">💾</div>
+        <div class="meta">
+          <div class="label">Screenshot: Save / Load UI showing 10 manual slots + quick + auto</div>
+          <div class="path">user-guide-assets/25-save-load.png</div>
+        </div>
+      </div>
+
+      <h3>Slots available</h3>
+      <ul>
+        <li><strong>10 manual slots</strong> — Slot 1 through Slot 10.</li>
+        <li><strong>1 quick-save slot</strong> — written by <kbd>F5</kbd>, read by <kbd>F9</kbd>.</li>
+        <li><strong>1 auto-save slot</strong> — exists in the UI but the automatic write-on-transition is not fully wired in the current build; you can save manually into it.</li>
+      </ul>
+
+      <h3>What a save contains</h3>
+      <ul>
+        <li>Current scene ID</li>
+        <li>All game variables</li>
+        <li>Scene history (every visited scene)</li>
+        <li>Custom character names (from rename prompts)</li>
+        <li>Encountered characters (to avoid re-prompting relationship labels)</li>
+        <li>Forward and reverse relationship labels</li>
+        <li>Character metadata (current values of trust, affection, etc.)</li>
+        <li>Total play time</li>
+        <li>The speaking character and scene name (for display in the save slot card)</li>
+      </ul>
+
+      <h3>Where saves live</h3>
+      <p>Saves are written to the player's <strong>local storage</strong> on the device running the game. Each project's saves are separate. Save thumbnails are modelled in the data but actual screenshot capture is not yet implemented; slot cards currently show “No Preview”.</p>
+
+      <h3>Loading from the main menu</h3>
+      <p>The <strong>Continue</strong> button loads the most recent quick or auto save. <strong>Load Game</strong> opens the slot selector. Loading drops the player directly into the saved scene.</p>
+    </section>
+
+    <!-- ============ 19 ============ -->
+    <section id="sec-19">
+      <h2><span class="sec-num">19.</span>Exporting Your Game</h2>
+      <p>From the Dashboard sidebar, click <strong>📦 Export Game</strong>.</p>
+
+      <div class="placeholder">
+        <div class="icon">📦</div>
+        <div class="meta">
+          <div class="label">Screenshot: Export dialog with game name, icon, and platform checkboxes</div>
+          <div class="path">user-guide-assets/29-export-dialog.png</div>
+        </div>
+      </div>
+
+      <h3>Export settings</h3>
+      <table class="fields">
+        <tr><th>Field</th><th>Notes</th></tr>
+        <tr><td><strong>Game Name *</strong></td><td>Required. Used as the executable name. Special characters are stripped.</td></tr>
+        <tr><td>App Icon</td><td>Optional. PNG recommended at 512×512. Auto-converted per platform (<code>.ico</code> for Windows, <code>.icns</code> for macOS).</td></tr>
+        <tr><td>Windows</td><td>Generates an NSIS installer (<code>.exe</code>).</td></tr>
+        <tr><td>macOS</td><td>Generates a disk image (<code>.dmg</code>).</td></tr>
+        <tr><td>Linux</td><td>Generates a portable <code>.AppImage</code>.</td></tr>
+      </table>
+      <p>At least one platform must be checked. You can check all three to build everything in one run.</p>
+
+      <h3>What happens during export</h3>
+
+      <div class="placeholder">
+        <div class="icon">⏳</div>
+        <div class="meta">
+          <div class="label">Screenshot: Export progress overlay showing stage messages</div>
+          <div class="path">user-guide-assets/30-export-progress.png</div>
+        </div>
+      </div>
+
+      <ol class="steps">
+        <li><strong>Validate</strong> game name, platforms, and that the project has a valid starting scene.</li>
+        <li><strong>Gather</strong> all scenes, characters, branches, variables, relationships, button styles, main menu config, and assets.</li>
+        <li><strong>Transform</strong> absolute asset paths into export-friendly filenames and create a manifest.</li>
+        <li><strong>Write</strong> <code>game-data.json</code> — a single JSON file containing your entire project.</li>
+        <li><strong>Copy</strong> the standalone player template, all assets, and a <code>package.json</code> with your game's name into the output folder.</li>
+        <li><strong>Install</strong> the build dependencies and invoke <em>electron-builder</em> for each selected platform.</li>
+        <li><strong>Produce</strong> the platform installers/packages in the output's <code>dist/</code> subfolder.</li>
+      </ol>
+
+      <p>Total time is typically <strong>5–10 minutes</strong> depending on platform count, asset size, and your machine.</p>
+
+      <h3>Output structure</h3>
+      <pre><code>YourGame/
+├── main.js              # Electron main process
+├── preload.js           # IPC bridge
+├── index.html           # Player UI shell
+├── game-engine.js       # Runtime engine
+├── package.json         # Build config
+├── game-data.json       # All your story data
+├── user-guide-assets/              # Images, audio, video
+└── dist/                # Built installers
+    ├── YourGame-Setup-1.0.0.exe
+    ├── YourGame-1.0.0.dmg
+    └── YourGame-1.0.0.AppImage</code></pre>
+
+      <h3>Testing the build</h3>
+      <ul>
+        <li>Run the produced installer on the target platform.</li>
+        <li>Run through New Game → save → load → quit to confirm the save/load cycle works.</li>
+        <li>Verify dialogue expressions, branch conditions, and audio behaviour match the preview.</li>
+      </ul>
+
+      <div class="callout note">
+        <span class="tag">Note</span>
+        Code-signing macOS or Windows builds is not automated. macOS may prompt the user to right-click → Open the first time. Distributing through stores like Steam or itch.io may require additional signing/notarization steps you handle outside NovaTale.
+      </div>
+    </section>
+
+    <!-- ============ 20 ============ -->
+    <section id="sec-20">
+      <h2><span class="sec-num">20.</span>License System</h2>
+      <p>Demo Mode keeps you constrained until you activate. The full license unlocks unlimited projects, characters, and scenes.</p>
+
+      <h3>Demo limits</h3>
+      <table class="fields">
+        <tr><th>Resource</th><th>Demo cap</th><th>Licensed</th></tr>
+        <tr><td>Projects</td><td>2</td><td>Unlimited</td></tr>
+        <tr><td>Characters per project</td><td>3</td><td>Unlimited</td></tr>
+        <tr><td>Scenes per project</td><td>10</td><td>Unlimited</td></tr>
+      </table>
+
+      <h3>License activation</h3>
+      <ol class="steps">
+        <li>Open the Activation Screen (first launch, or from any Upgrade Prompt).</li>
+        <li>Paste your license key.</li>
+        <li>Click <strong>Activate License</strong>.</li>
+        <li>NovaTale verifies the key against Gumroad and registers this device.</li>
+      </ol>
+
+      <h3>Device limit</h3>
+      <p>Each license activates up to <strong>two devices</strong>. To move the license to a new device, deactivate it on one of the existing devices first.</p>
+    </section>
+
+    <!-- ============ 21 ============ -->
+    <section id="sec-21">
+      <h2><span class="sec-num">21.</span>Known Limits &amp; Coming-Soon Features</h2>
+      <p>NovaTale is a substantial creator tool, but a few areas deserve clear notes:</p>
+      <ul>
+        <li>Scene choices are modelled in the data layer and supported at runtime, but the primary authoring flow you should rely on is the <strong>Scene Graph + branches</strong> system.</li>
+        <li><strong>Gallery</strong>, <strong>Extras</strong>, and <strong>Credits</strong> main-menu buttons are designable but currently behave as “coming soon” placeholders unless you wire them up.</li>
+        <li><strong>Save thumbnails</strong> are modelled but screenshot capture is not implemented yet; slot cards show “No Preview”.</li>
+        <li>The <strong>Auto Save</strong> slot exists in the UI but the always-on auto-save trigger is not wired up — you can still save manually into it.</li>
+        <li>The <strong>in-game history log</strong> (replay previously read dialogue) is not implemented yet.</li>
+        <li>Branch <strong>logic expressions</strong> are powerful but should be tested carefully in Play Preview — wrong syntax silently fails (the expression renders as-is and logs to the console).</li>
+        <li>Some <strong>confirmation dialogs</strong> still use native browser confirms instead of styled modals.</li>
+        <li>Background <strong>video on the main menu</strong> is supported by the form but rendering is partial in the current build.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 22 ============ -->
+    <section id="sec-22">
+      <h2><span class="sec-num">22.</span>Best Practices</h2>
+      <ul>
+        <li><strong>Name variables clearly</strong> — short and unambiguous (<code>trust</code>, <code>gold</code>, <code>route</code>, <code>hasKeycard</code>).</li>
+        <li><strong>Pick character names early and stick with them</strong> — every reference in expressions uses the character name as the key.</li>
+        <li><strong>Use character metadata for per-character stats</strong> and <strong>variables for global story state.</strong></li>
+        <li><strong>Test important branches</strong> after every logic change. Use Play Preview, walk through different routes.</li>
+        <li><strong>Keep your source assets in stable folders</strong> while building. Move them only after the project is exported.</li>
+        <li><strong>Always have one clear starting scene</strong> — no incoming branches, at least one outgoing branch.</li>
+        <li><strong>Create reusable button styles</strong> in the Button Designer rather than styling each button separately.</li>
+        <li><strong>Preview before export.</strong> Exports take 5–10 minutes per platform — much faster to iterate in the preview.</li>
+        <li><strong>Use a default branch</strong> per source scene as a safety net so the game never stalls when no condition matches.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 23 ============ -->
+    <section id="sec-23">
+      <h2><span class="sec-num">23.</span>Quick Reference Appendix</h2>
+
+      <h3>Keyboard shortcuts (in-game)</h3>
+      <table class="fields">
+        <tr><th>Key</th><th>Action</th></tr>
+        <tr><td><kbd>F5</kbd></td><td>Quick Save</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>Quick Load</td></tr>
+        <tr><td><kbd>S</kbd></td><td>Toggle Status Screen</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Close any open overlay</td></tr>
+        <tr><td>Click</td><td>Advance dialogue / skip typewriter</td></tr>
+      </table>
+
+      <h3>Transition types</h3>
+      <table class="fields">
+        <tr><th>Type</th><th>Description</th></tr>
+        <tr><td>Fade</td><td>Smooth fade between scenes.</td></tr>
+        <tr><td>Dissolve</td><td>Cross-dissolve / blend.</td></tr>
+        <tr><td>Slide Left</td><td>Incoming scene slides in from the right.</td></tr>
+        <tr><td>Slide Right</td><td>Incoming scene slides in from the left.</td></tr>
+        <tr><td>Wipe</td><td>Wipe transition.</td></tr>
+        <tr><td>None</td><td>Instant cut; no animation.</td></tr>
+      </table>
+
+      <h3>File format support</h3>
+      <table class="fields">
+        <tr><th>Asset</th><th>Supported</th></tr>
+        <tr><td>Images</td><td><code>.jpg</code> <code>.jpeg</code> <code>.png</code> <code>.gif</code> <code>.bmp</code> <code>.webp</code></td></tr>
+        <tr><td>Video</td><td><code>.mp4</code> <code>.webm</code> <code>.mov</code></td></tr>
+        <tr><td>Audio</td><td><code>.mp3</code> <code>.wav</code> <code>.ogg</code> <code>.m4a</code></td></tr>
+        <tr><td>App icon</td><td><code>.png</code> (recommended) auto-converted to <code>.ico</code> / <code>.icns</code></td></tr>
+      </table>
+
+      <h3>Defaults</h3>
+      <table class="fields">
+        <tr><th>Setting</th><th>Default</th></tr>
+        <tr><td>Dialogue Box Color</td><td><code>#1e293b</code></td></tr>
+        <tr><td>Dialogue Text Color</td><td><code>#f1f5f9</code></td></tr>
+        <tr><td>Dialogue Font</td><td>Arial, sans-serif</td></tr>
+        <tr><td>Text Speed</td><td>50</td></tr>
+        <tr><td>Default BGM Volume</td><td>80</td></tr>
+        <tr><td>Default SFX Volume</td><td>80</td></tr>
+        <tr><td>Default Voice Volume</td><td>100</td></tr>
+        <tr><td>Main Menu BG Color</td><td><code>#1a1a2e</code></td></tr>
+        <tr><td>Button Style — bg</td><td><code>#6366f1</code></td></tr>
+        <tr><td>Button Style — hover bg</td><td><code>#4f46e5</code></td></tr>
+        <tr><td>Transition Duration</td><td>500 ms</td></tr>
+      </table>
+    </section>
+
+    <!-- ============ 24 ============ -->
+    <section id="sec-24">
+      <h2><span class="sec-num">24.</span>Moonlit Signals — Full Walkthrough</h2>
+      <p>The pieces gathered in earlier sections combine into a complete, playable mini-novel. Use this as your copy-and-paste recipe.</p>
+
+      <h3>1. Project</h3>
+      <ul>
+        <li>Name: <strong>Moonlit Signals</strong></li>
+        <li>Dialogue Box: <code>#1e1b4b</code> · Dialogue Text: <code>#f1f5f9</code> · Font: Georgia, serif</li>
+        <li>Global BGM: <em>ambient-night.mp3</em> · Default BGM Volume: 70 · Text Speed: 55</li>
+      </ul>
+
+      <h3>2. Characters</h3>
+      <ul>
+        <li><strong>Player</strong> — protagonist, renameable, default display name <em>You</em>.</li>
+        <li><strong>Mira</strong> — Female, name colour <code>#a78bfa</code>; metadata <code>trust=35</code>, <code>affection=20</code>, <code>knowsSignal=false</code>.</li>
+        <li><strong>Ren</strong> — Male, name colour <code>#f87171</code>; metadata <code>trust=15</code>.</li>
+      </ul>
+
+      <h3>3. Variables</h3>
+      <ul>
+        <li><code>signalStrength</code> = 0 (number)</li>
+        <li><code>hasKeycard</code> = false (boolean)</li>
+        <li><code>route</code> = "library" (string)</li>
+        <li><code>trust</code> = 10 (number)</li>
+      </ul>
+
+      <h3>4. Relationships</h3>
+      <ul>
+        <li>Player → Mira: <em>classmate</em>, customizable</li>
+        <li>Player → Ren: <em>classmate</em>, customizable</li>
+        <li>Mira → Player: <em>study partner</em></li>
+      </ul>
+
+      <h3>5. Button Styles</h3>
+      <ul>
+        <li><strong>Primary</strong> — indigo background, white text, soft shadow</li>
+        <li><strong>Secondary</strong> — transparent background, light grey border</li>
+      </ul>
+
+      <h3>6. Scenes &amp; branches</h3>
+
+      <div class="example">
+        <div class="title">Scene A — Library Signal (starting scene)</div>
+        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal changed when you chose to trust me, {Player.name}.”</em> · Voice: <em>mira-line-01.mp3</em> · BGM: <em>ambient-night.mp3</em><br>
+        <strong>Branches out</strong>:
+        <ul style="margin-top:6px;">
+          <li>→ <strong>Library Investigation</strong> · Button: “Stay in the library” · Action: <code>trust += 5; Mira.trust += 10; route = "library";</code></li>
+          <li>→ <strong>Rooftop Door</strong> · Condition: <code>hasKeycard === true</code> · Button: “Follow the signal” · Action: <code>signalStrength += 20; route = "rooftop";</code></li>
+          <li>→ <strong>Ask Ren for help</strong> · Condition: <code>Ren.trust &gt;= 20</code> · Button: <code>Talk to Ren ({Ren.trust})</code> · Action: <code>Ren.trust += 5;</code></li>
+          <li>→ <strong>Signal Revelation</strong> · Default branch · Button text: empty (silent fallback)</li>
+        </ul>
+      </div>
+
+      <div class="example">
+        <div class="title">Scene B — Library Investigation</div>
+        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“We comb the shelves. {Mira.trust > 40 ? 'You feel her lean in close.' : 'She still seems wary.'}”</em><br>
+        Branches: → <strong>Signal Revelation</strong> · Condition: <code>signalStrength &gt;= 50</code> · Default → <strong>Library Signal</strong> (loop back)
+      </div>
+
+      <div class="example">
+        <div class="title">Scene C — Rooftop Door</div>
+        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The receiver crackles. The signal strength reads {signalStrength}.”</em> · Transition in: Dissolve 600ms<br>
+        Branches: → <strong>Signal Revelation</strong> · Condition: <code>signalStrength &gt;= 50</code> · Default → <strong>Library Signal</strong>
+      </div>
+
+      <div class="example">
+        <div class="title">Scene D — Ask Ren for help</div>
+        Image scene · Speaker: <strong>Ren</strong> · Dialogue: <em>“Astronomy club nonsense, {Player.name}. {Ren.trust &gt; 20 ? 'But I'll bite — what do you need?' : 'No way.'}”</em><br>
+        Branches: → <strong>Library Investigation</strong> · Action: <code>hasKeycard = true; trust += 3;</code> · Button: “Convince him”
+      </div>
+
+      <div class="example">
+        <div class="title">Scene E — Signal Revelation (ending)</div>
+        Image scene · Speaker: <strong>Mira</strong> · Dialogue: <em>“The signal resolves. {signalStrength &gt;= 60 ? 'It's the rooftop coordinates.' : 'It fades before we can decode it.'} Thank you for trusting me, {Player.name}.”</em><br>
+        No outgoing branches — terminal scene.
+      </div>
+
+      <h3>7. Main Menu</h3>
+      <ul>
+        <li>Background image: <em>rooftop-observatory.png</em></li>
+        <li>Menu BGM: <em>menu-theme.mp3</em> @ 70%</li>
+        <li>Buttons: New Game · Continue · Load Game · Preferences · Quit — all Primary style</li>
+      </ul>
+
+      <h3>8. Test path</h3>
+      <ol class="steps">
+        <li>Click <strong>▶ Play Preview</strong>.</li>
+        <li>Enter a custom protagonist name in the rename prompt.</li>
+        <li>Choose custom relationship labels for Mira and Ren.</li>
+        <li>Run the library route once (Stay in the library), watch <code>trust</code> and <code>Mira.trust</code> climb on the Status Screen (<kbd>S</kbd>).</li>
+        <li>Quick-save (<kbd>F5</kbd>), then return and try the Ren route — confirm <code>hasKeycard</code> flips to <code>true</code> and the rooftop button appears.</li>
+        <li>Quick-load (<kbd>F9</kbd>) back to the saved point and try the ending.</li>
+        <li>Export with all three platforms ticked.</li>
+      </ol>
+
+      <p style="margin-top:32px; padding-top:18px; border-top:1px solid var(--border); color: var(--text-muted); font-size: 13px;">
+        End of guide. Replace each placeholder block with a real screenshot from <code>user-guide-assets/</code>, and you have a publish-ready user manual for NovaTale.
+      </p>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>
